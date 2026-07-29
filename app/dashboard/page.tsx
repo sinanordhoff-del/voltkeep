@@ -47,11 +47,17 @@ export default function DashboardPage() {
 
   async function handleAdd(e: React.FormEvent) {
     e.preventDefault();
-    await fetch('/api/credentials', {
+    const res = await fetch('/api/credentials', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
     });
+    if (res.status === 403) {
+      const data = await res.json();
+      setShowModal(false);
+      alert(data.message || "You've hit the free trial limit. Upgrade to add more credentials.");
+      return;
+    }
     setShowModal(false);
     setForm({ name: '', type: 'License', expiry_date: '' });
     loadCredentials();
@@ -89,6 +95,17 @@ export default function DashboardPage() {
           </button>
         </div>
       </div>
+
+      {!loading && withDays.length < 3 && (
+        <div style={{ background: '#FFF8E8', border: '1px solid #F0DFA8', borderRadius: 8, padding: '10px 16px', marginBottom: 20, fontSize: 13, color: '#7A5B15' }}>
+          Free trial — {withDays.length} of 3 credentials used. Upgrade anytime for unlimited tracking.
+        </div>
+      )}
+      {!loading && withDays.length >= 3 && (
+        <div style={{ background: '#FDEEEC', border: '1px solid #F0C4BE', borderRadius: 8, padding: '10px 16px', marginBottom: 20, fontSize: 13, color: '#A73C31' }}>
+          You've used all 3 free trial credentials. <a href="#" onClick={(e) => { e.preventDefault(); handleUpgrade('solo'); }} style={{ color: '#A73C31', fontWeight: 600 }}>Upgrade to Solo</a> to add more.
+        </div>
+      )}
 
       {loading ? (
         <p>Loading...</p>
