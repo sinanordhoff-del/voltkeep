@@ -55,6 +55,27 @@ export async function POST(req: NextRequest) {
     business = newBusiness;
   }
 
+  // Free trial limit: 3 credentials. Paid plans (solo/team/multi_location) are unlimited.
+  const { data: bizDetails } = await supabase
+    .from('businesses')
+    .select('plan')
+    .eq('id', business.id)
+    .single();
+
+  if (bizDetails?.plan === 'trial') {
+    const { count } = await supabase
+      .from('credentials')
+      .select('*', { count: 'exact', head: true })
+      .eq('business_id', business.id);
+
+    if ((count ?? 0) >= 3) {
+      return NextResponse.json(
+        { error: 'TRIAL_LIMIT_REACHED', message: "You've hit the free trial limit of 3 credentials. Upgrade to add more." },
+        { status: 403 }
+      );
+    }
+  }
+
   const { data: credential, error } = await supabase
     .from('credentials')
     .insert({
