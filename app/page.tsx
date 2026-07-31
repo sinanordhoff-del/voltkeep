@@ -94,6 +94,8 @@ const STYLE = `
   .final h2{ font-size: clamp(28px,3.6vw,42px); color:#fff; margin-bottom:16px; font-weight:800; }
   .final p{ color: var(--text-dim); font-size:15px; margin-bottom:34px; }
   footer{ border-top:1px solid var(--panel-line); padding:28px 0; text-align:center; font-size:12px; color: var(--text-dim); }
+  .help-btn{ position:fixed; bottom:24px; right:24px; z-index:60; background: var(--gold); color: var(--bg-deep); border:none; font-weight:600; font-size:13.5px; padding:13px 20px; border-radius:30px; cursor:pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.35); display:flex; align-items:center; gap:8px; }
+  .help-btn:hover{ background: var(--gold-bright); }
   @media (max-width: 860px){
     .hero{ grid-template-columns:1fr; padding-top:60px; }
     .stack{ order:-1; height:300px; margin-bottom:10px; }
@@ -236,6 +238,10 @@ export default function Home() {
       </div>
 
       <footer>© 2026 VoltKeep. All rights reserved. Compliance tracking for small electrical contractors.</footer>
+
+      <a href="mailto:voltkeep.support@gmail.com?subject=VoltKeep%20question" className="help-btn">
+        💬 Contact us
+      </a>
     </div>
   );
 }
