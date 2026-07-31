@@ -235,7 +235,7 @@ export default function Home() {
         </section>
       </div>
 
-      <footer>VoltKeep — compliance tracking for small electrical contractors.</footer>
+      <footer>© 2026 VoltKeep. All rights reserved. Compliance tracking for small electrical contractors.</footer>
     </div>
   );
 }
