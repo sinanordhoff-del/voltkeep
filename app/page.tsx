@@ -202,6 +202,7 @@ export default function Home() {
           <div className="section-head">
             <div className="eyebrow">Pricing</div>
             <h2>Priced for a small team, not an enterprise compliance department.</h2>
+            <p style={{ marginTop: 10 }}>30-day money-back guarantee — if it's not useful, get a full refund, no questions asked.</p>
           </div>
           <div className="plans">
             <div className="plan">
