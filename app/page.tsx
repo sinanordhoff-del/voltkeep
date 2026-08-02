@@ -185,6 +185,25 @@ export default function Home() {
           </div>
         </section>
 
+        <section>
+          <div className="section-head">
+            <div className="eyebrow">Real cost of doing it manually</div>
+            <h2>A missed renewal costs more than $29/month.</h2>
+          </div>
+          <div className="problems">
+            <div className="problem">
+              <div className="icon">📋</div>
+              <h3>Manual tracking</h3>
+              <p>Free — until someone forgets. A lapsed license can mean lost work, failed insurance claims, or a job put on hold.</p>
+            </div>
+            <div className="problem">
+              <div className="icon">⚡</div>
+              <h3>VoltKeep</h3>
+              <p>$29/month. Every license, cert, and policy tracked automatically — nobody has to remember anything.</p>
+            </div>
+          </div>
+        </section>
+
         <section id="how">
           <div className="section-head">
             <div className="eyebrow">How it works</div>
